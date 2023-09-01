@@ -1,17 +1,16 @@
-"""This module contains the main function for the program."""
-
-
 def main():
     """Main function for the program."""
-    plaintext = input("Enter the plaintext to encrypt")
-    key = input("Enter the key of the cipher")
-
+    plaintext = input("Enter the plaintext to encrypt: ")
+    key = input("Enter the key of the cipher: ")
     if plaintext is None or plaintext == "":
-        return "Empty string can't be encoded"
-    if (key is None) or (key == 0) or (not isinstance(key, int)):
-        return "Empty key can't be encoded"
+        print("Empty string can't be encoded")
+        return
+    if not key.isdigit():
+        print("Key must be a positive integer")
+        return
 
-    return calculate_cipher(plaintext, key)
+    key = int(key)
+    print(calculate_cipher(plaintext, key))
 
 
 def calculate_cipher(plaintext_string, key):
@@ -20,11 +19,12 @@ def calculate_cipher(plaintext_string, key):
     for char in plaintext_string:
         if char == " ":
             cipher += " "
-        elif (ord(char) < 65 or (ord(char) > 90 and ord(char) < 97)) or (
-            (ord(char) < 97 and ord(char) > 90) or ord(char) <= 122
-        ):
-            cipher += " "
-        cipher += chr((ord(char) - 97 + key) % 26 + 97)
+        elif not char.isalpha():
+            cipher += char
+        elif char.islower():
+            cipher += chr((ord(char) - ord("a") + key) % 26 + ord("a"))
+        else:
+            cipher += chr((ord(char) - ord("A") + key) % 26 + ord("A"))
 
     return cipher
 
