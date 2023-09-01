@@ -1,3 +1,6 @@
+"""This module contains the main code for the Caesar Cipher program."""
+
+
 def main():
     """Main function for the program."""
     plaintext = input("Enter the plaintext to encrypt: ")
