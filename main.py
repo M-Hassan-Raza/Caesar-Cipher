@@ -20,10 +20,10 @@ def calculate_cipher(plaintext_string, key):
     for char in plaintext_string:
         if char == " ":
             cipher += " "
-        elif (ord(char) < 65 or ord(char) <= 90) or (
-            ord(char) < 97 or ord(char) <= 122
+        elif (ord(char) < 65 or (ord(char) > 90 and ord(char) < 97)) or (
+            (ord(char) < 97 and ord(char) > 90) or ord(char) <= 122
         ):
-            cipher += chr((ord(char) - 65 + key) % 26 + 65)
+            cipher += " "
         cipher += chr((ord(char) - 97 + key) % 26 + 97)
 
     return cipher
