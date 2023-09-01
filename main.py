@@ -27,3 +27,7 @@ def calculate_cipher(plaintext_string, key):
         cipher += chr((ord(char) - 97 + key) % 26 + 97)
 
     return cipher
+
+
+if __name__ == "__main__":
+    main()
